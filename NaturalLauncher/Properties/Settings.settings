@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NaturalLauncher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConfigurationUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/</Value>
+    </Setting>
+    <Setting Name="IndexURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/</Value>
+    </Setting>
+    <Setting Name="CreditURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/</Value>
+    </Setting>
+    <Setting Name="GameUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/ns</Value>
+    </Setting>
+    <Setting Name="GatherURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.ensl.org/gathers/latest/ns1</Value>
+    </Setting>
+    <Setting Name="NineLegendUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.elseware-experience.com/vignauxmael/NaturalLauncher/NLPack</Value>
+    </Setting>
+    <Setting Name="LauncherUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/Launcher/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
