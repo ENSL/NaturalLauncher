@@ -148,12 +148,13 @@ namespace NaturalLauncher
                     rv = s;
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 // Anything could have happened here but 
                 // we don't want to stop the user
                 // from using the application.
                 rv = null;
+                App.SendReport(exception, "Couldnt Find the Remote Version of NS");
             }
             return rv;
         }
@@ -261,9 +262,10 @@ namespace NaturalLauncher
                     }
                 }
             }
-            catch
+            catch(Exception exception)
             {
                 MessageBoxResult AlertBox = MessageBox.Show("HL Folder not found","Alert", MessageBoxButton.OK , MessageBoxImage.Error);
+                App.SendReport(exception, "Couldnt Find the Remote Version of NS");
                 path = "";
             }
 
@@ -432,15 +434,15 @@ namespace NaturalLauncher
                     string IgnoreString = File.ReadAllText(IgnorePath);
                     NewManifest = JsonConvert.DeserializeObject<LauncherManifest>(IgnoreString);
                 }
-                catch
+                catch(Exception exception)
                 {
                     /*MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Could not retrieve a new ignore manifest file, Creating a void one...");
                     NewManifest.Files["/config.cfg"] = "";*/
                     Util.PlaySoundFX("error");
                     MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Launcher couldn't find a correct ignore.list from online source, please verify you internet connection..."
                         , "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
-                    
-                    throw new Exception("Launcher couldn't find a correct ignore.list from online source, please verify you internet connection...");
+
+                    App.SendReport(exception, "Launcher couldn't find a correct ignore.list from online source, please verify you internet connection...");
                 }
             }
             // then we read the custom one on the disk
@@ -605,9 +607,10 @@ namespace NaturalLauncher
                     File.WriteAllLines(Launcher.NSFolder + Path.DirectorySeparatorChar + "config.cfg", CfgLines);
                 }
             }
-            catch
+            catch(Exception exception)
             {
                 System.Windows.MessageBox.Show("Could not write config.cfg, please verify the file is not read only !", "Read only", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.SendReport(exception, "Could not write config.cfg, please verify the file is not read only !");
             }
             try
             {
@@ -616,10 +619,11 @@ namespace NaturalLauncher
                     File.WriteAllLines(Launcher.NSFolder + Path.DirectorySeparatorChar + "userconfig.cfg", UCfgLines);
                 }
             }
-            catch
+            catch (Exception exception)
             {
                 System.Windows.MessageBox.Show("Could not write userconfig.cfg, please verify the file is not read only !" + Environment.NewLine +
                     "This problem may also be caused by a hud_style setting in your userconfig.cfg file !", "Read only", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.SendReport(exception, "Could not write userconfig.cfg, please verify the file is not read only !");
             }
 
         }

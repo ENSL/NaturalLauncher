@@ -35,11 +35,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
+
 namespace NaturalLauncher
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
         // TODO We need to know if ns files are being updated to lock the verify/update functions if so (with a file on the main serv).
@@ -78,12 +80,12 @@ namespace NaturalLauncher
             IsDebugMode = true;
 #endif
 
+            // Self Updater
             SelfUpdater.DeleteOldFiles(); // not really needed since CleanAndLaunch.exe
 
             SelfUpdater TheSelfUpdater = new SelfUpdater();
             TheSelfUpdater.SetMainWindowRef(this);
             TheSelfUpdater.UpdateLauncher();
-
 
             if (SelfUpdater.LaucherRemoteVNumber != SelfUpdater.LaucherLocalVNumber && SelfUpdater.isSelfUpdating)
             {
@@ -216,7 +218,7 @@ namespace NaturalLauncher
             }
         }
 
-        #region clicks
+        #region Clicks
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             if (SelfUpdater.CheckOneFileSignature("NaturalLauncher.exe") || !SelfUpdater.isSelfUpdating)
@@ -658,4 +660,5 @@ namespace NaturalLauncher
         #endregion
 
     }
+
 }
