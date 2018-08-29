@@ -59,12 +59,18 @@ namespace NaturalLauncher
                     break;
             }
 
-            XmlBuilder.ReadConfigXml(out string uno, out bool dos, out string discordStatus, out bool keepAlive);
-            Launcher.keepLauncherAlive = keepAlive;
-            DiscordTxtbox.Text = discordStatus;
-            KeepAliveChecker.IsChecked = keepAlive;
-
-            windowfullyopen = true;
+            try
+            {
+                XmlBuilder.ReadConfigXml(out string uno, out bool dos, out string discordStatus, out bool keepAlive);
+                Launcher.keepLauncherAlive = keepAlive;
+                DiscordTxtbox.Text = discordStatus;
+                KeepAliveChecker.IsChecked = keepAlive;
+                windowfullyopen = true;
+            }
+            catch(Exception exception)
+            {
+                App.SendReport(exception, "Could Not Read ConfigXml");
+            }            
 
         }
 
@@ -199,6 +205,10 @@ namespace NaturalLauncher
                     XmlBuilder.CreateConfigXml();
                     Launcher.HLFolder = folderPath;
                     Launcher.NSFolder = folderPath + System.IO.Path.DirectorySeparatorChar + "ns";
+                }
+                else
+                {
+                    // throw new FileNotFoundException("Could not find HL folder"); // no need to crash the launcher for this
                 }
 
                 MainWindowReference.CallUpdateGame();

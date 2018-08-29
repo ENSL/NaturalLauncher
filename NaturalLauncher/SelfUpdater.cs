@@ -277,7 +277,8 @@ namespace NaturalLauncher
 
             if (publicKey == null)
             {
-                throw new ArgumentNullException("publicKey");
+                MessageBoxResult AlertBox = MessageBox.Show("Your launcher is missing the public crypto key", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new ArgumentNullException("MissingKeyFile");
             }
 
             if (signature == null)
@@ -293,7 +294,10 @@ namespace NaturalLauncher
 
         public static X509Certificate2 LoadPublicKey(string PublicKeyPath)
         {
-            return new X509Certificate2(PublicKeyPath);
+            if(File.Exists(PublicKeyPath))
+                return new X509Certificate2(PublicKeyPath);
+            else
+                throw new ArgumentNullException("MissingKeyFile");
         }
 
         public static byte[] StringToByte(string str)

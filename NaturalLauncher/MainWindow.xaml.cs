@@ -254,12 +254,19 @@ namespace NaturalLauncher
 
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            if (sw == null)
+            try
             {
-                sw = new Settings();
+                if (sw == null)
+                {
+                    sw = new Settings();
+                }
+                sw.SetMainWindowRef(this);
+                sw.Show();
             }
-            sw.SetMainWindowRef(this);
-            sw.Show();
+            catch(Exception exception)
+            {
+                App.SendReport(exception, "Could Not Open Setting window");
+            }
         }
 
         private void Verify_Click(object sender, RoutedEventArgs e)
