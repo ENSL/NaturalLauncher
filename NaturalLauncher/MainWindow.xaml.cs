@@ -213,6 +213,7 @@ namespace NaturalLauncher
                 MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Please verify the installation" + Environment.NewLine
                     + "This message will show up if this is the first time you launch this software"
                     , "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation); //not true anymore
+                Launcher.restartSteam = true;
                 SettingButton.IsEnabled = false;
                 IsVerification = false;
             }
@@ -419,6 +420,11 @@ namespace NaturalLauncher
             else
             {
                 ProgressLabel.Content = "Up to date !";
+                if (Launcher.restartSteam)
+                {
+                    Launcher.RestartSteam();
+                    UpdateLog.WriteLine(Util.GetShortTimeString() + "Restarting Steam");
+                }
                 StartButton.Content = "Play";
                 UpdateLog.WriteLine(Util.GetShortTimeString() + "Completed the update or verify work");
                 TaskbarItemInfo.ProgressValue = 0;

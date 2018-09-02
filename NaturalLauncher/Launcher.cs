@@ -44,6 +44,8 @@ namespace NaturalLauncher
         public static string configName = "Launcher.xml";
 
         public static bool keepLauncherAlive = true;
+        public static bool restartSteam = false; // used at the end of the verify process
+
         public static DateTime LAUNCHTIME = System.DateTime.UtcNow;
         public static string discordCustomStatus = "Currently In The Launcher";
 
@@ -128,6 +130,17 @@ namespace NaturalLauncher
         public static void LaunchWebsite(string Url)
         {
             Process.Start(Url);
+        }
+
+        public static void RestartSteam()
+        {
+            string strCmdText;
+            strCmdText = "/c taskkill /f /IM \"steam.exe\" ";
+            System.Diagnostics.Process.Start("CMD.exe", strCmdText); // kill steam
+            System.Threading.Thread.Sleep(1000); // wait one sec
+            strCmdText = "/c start steam:";
+            System.Diagnostics.Process.Start("CMD.exe", strCmdText); // start steam
+            
         }
 
         public static void RefreshInternetPageAsync(string whichPage)
