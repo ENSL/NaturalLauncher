@@ -17,8 +17,8 @@
     <Setting Name="GatherURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://www.ensl.org/gathers/latest/ns1</Value>
     </Setting>
-    <Setting Name="NineLegendUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.elseware-experience.com/vignauxmael/NaturalLauncher/NLPack</Value>
+    <Setting Name="NsXpURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ensl.gk-servers.de/ns_xp</Value>
     </Setting>
     <Setting Name="LauncherUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://ensl.gk-servers.de/Launcher/</Value>

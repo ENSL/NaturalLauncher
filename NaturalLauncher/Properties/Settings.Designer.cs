@@ -85,13 +85,13 @@ namespace NaturalLauncher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.elseware-experience.com/vignauxmael/NaturalLauncher/NLPack")]
-        public string NineLegendUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://ensl.gk-servers.de/ns_xp")]
+        public string NsXpURL {
             get {
-                return ((string)(this["NineLegendUrl"]));
+                return ((string)(this["NsXpURL"]));
             }
             set {
-                this["NineLegendUrl"] = value;
+                this["NsXpURL"] = value;
             }
         }
         

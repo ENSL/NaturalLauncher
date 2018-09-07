@@ -81,28 +81,52 @@ namespace NaturalLauncher
             return xmlInfo;
         }
 
-        public static bool ReadConfigXml(out string HLFolder, out bool IsNlPack, out string customDiscordStatus, out bool keepLauncherAlive)
+        public static bool ReadConfigXml(out string HLFolder, out bool isXP, out string customDiscordStatus, out bool keepLauncherAlive)
         {
             XmlDocument doc = new XmlDocument();
-
             try
             {
                 doc.Load(Launcher.curDir + Path.DirectorySeparatorChar + Launcher.configName);
                 XmlNodeList nodelist = doc.SelectNodes("/LauncherConfiguration");
+            }
+            catch
+            {
+                throw new FileNotFoundException("Could not read xml config file, please check read only status");
+            }
+            try
+            {
                 HLFolder = doc.SelectSingleNode("//HLFolder").InnerText;
-                IsNlPack = doc.SelectSingleNode("//NLPack").InnerText == "True";
-                customDiscordStatus = doc.SelectSingleNode("//DiscordStatus").InnerText;
-                keepLauncherAlive = doc.SelectSingleNode("//keeplauncherAlive").InnerText == "True";
-                return true;
             }
             catch
             {
                 HLFolder = "";
-                IsNlPack = false;
-                customDiscordStatus = "Gather forming";
-                keepLauncherAlive = true;
-                return false;
             }
+            try
+            {
+                isXP = doc.SelectSingleNode("//isXP").InnerText == "True";
+            }
+            catch
+            {
+                isXP = false;
+            }
+            try
+            {
+                customDiscordStatus = doc.SelectSingleNode("//DiscordStatus").InnerText;
+            }
+            catch
+            {
+                customDiscordStatus = "Gather forming";
+            }
+            try
+            {
+                keepLauncherAlive = doc.SelectSingleNode("//keeplauncherAlive").InnerText == "True";
+            }
+            catch
+            {
+                keepLauncherAlive = true;
+            }
+
+            return true;
 
         }
 
@@ -110,7 +134,7 @@ namespace NaturalLauncher
         {
             var xmlInfo = new XElement("LauncherConfiguration");
             xmlInfo.Add(new XElement("HLFolder", Launcher.HLFolder));
-            xmlInfo.Add(new XElement("NLPack", "False"/*Launcher.IsNLPack().ToString()*/)); //doesnt matter anymore, also, can't use this function cause it asks for the config file...
+            xmlInfo.Add(new XElement("isXP", Launcher.isExperimental.ToString()));
             xmlInfo.Add(new XElement("DiscordStatus", Launcher.discordCustomStatus));
             xmlInfo.Add(new XElement("keeplauncherAlive", Launcher.keepLauncherAlive.ToString()));
 

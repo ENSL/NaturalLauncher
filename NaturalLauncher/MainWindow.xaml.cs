@@ -464,21 +464,34 @@ namespace NaturalLauncher
 
             string manifest = webClient.DownloadString(ManifestURL);
             LauncherManifest RemoteManifest = JsonConvert.DeserializeObject<LauncherManifest>(manifest);
+            string UrlToDownloadGame = Properties.Settings.Default.GameUrl;
 
-            if (Launcher.IsNLPack())
+            if (Launcher.isExperimental)
             {
-                string NLManifestURL = Launcher.MainPageURL.AbsoluteUri + Launcher.NLManifestName;
-                string NLmanifest = webClient.DownloadString(NLManifestURL);
-                LauncherManifest NLManifest = JsonConvert.DeserializeObject<LauncherManifest>(NLmanifest);
+                try
+                {
+                    string XPManifestURL = Launcher.MainPageURL.AbsoluteUri + Launcher.XPManifestName;
+                    string XPmanifest = webClient.DownloadString(XPManifestURL);
+                    LauncherManifest XPManifest = JsonConvert.DeserializeObject<LauncherManifest>(XPmanifest);
 
-                RemoteManifest = Util.CleanManifestWithOptions(RemoteManifest, NLManifest); //cleaning the manifest hash consequently
+                    //RemoteManifest = Util.CleanManifestWithOptions(RemoteManifest, XPManifest); //cleaning the manifest hash consequently
+                    RemoteManifest = XPManifest;
+                    UrlToDownloadGame = Properties.Settings.Default.NsXpURL;
+                }
+                catch
+                {
+                    MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Couldn't find the experimental manifest online, downloading normal version instead"
+                    , "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation); //not true anymore
+                    RemoteManifest = JsonConvert.DeserializeObject<LauncherManifest>(manifest);
+                    UrlToDownloadGame = Properties.Settings.Default.GameUrl;
+                }
             }
 
             LauncherManifest IgnoreManifest = Util.GetIgnoreManifest(IsVerification); //attention, might not exist, if so it has to be downloaded, if not let's use it !
 
             string gameInstallDir = Launcher.NSFolder;
             UpdateLog.WriteLine(Util.GetShortTimeString() + "Install Directory located in : " + gameInstallDir);
-            UpdateLog.WriteLine(Util.GetShortTimeString() + "NL Pack installed : " + Launcher.IsNLPack().ToString());
+            UpdateLog.WriteLine(Util.GetShortTimeString() + "Is Experimental : " + Launcher.isExperimental.ToString());
             UpdateLog.WriteLine(Util.GetShortTimeString() + "Distant Manifest located at : " + ManifestURL);
 
             var md5 = MD5.Create();
@@ -533,7 +546,7 @@ namespace NaturalLauncher
 
                 if (ShouldDownload)
                 {
-                    DownloadFile(curFile, totalFiles, kv, RemoteManifest, gameFilePath, Properties.Settings.Default.GameUrl, webClient);
+                    DownloadFile(curFile, totalFiles, kv, RemoteManifest, gameFilePath, UrlToDownloadGame, webClient);
 
                     var hash = Util.ComputeMD5(gameFilePath);
 
@@ -541,7 +554,7 @@ namespace NaturalLauncher
                     {
                         //MessageBox.Show("Failed Validating " + kv.Key + " : Redownloading"); //problem with double validation, is it too soon in the chain of event ?
                         UpdateLog.WriteLine(Util.GetShortTimeString() + "failed to verify newly downloaded file, redownloading");
-                        DownloadFile(curFile, totalFiles, kv, RemoteManifest, gameFilePath, Properties.Settings.Default.GameUrl, webClient);
+                        DownloadFile(curFile, totalFiles, kv, RemoteManifest, gameFilePath, UrlToDownloadGame, webClient);
                     }
                     UpdateLog.WriteLine(Util.GetShortTimeString() + "Download complete for file: " + kv.Key + " with new hash :" + hash + " for manifest hash : " + kv.Value);
                 }
@@ -553,64 +566,6 @@ namespace NaturalLauncher
                 
                 curFile++;
             }
-
-            // Update the NineLegend pack files if requiered
-            /*if (Launcher.IsNLPack())
-            {
-                string NLManifestURL = Launcher.MainPageURL.AbsoluteUri + Launcher.NLManifestName;
-                string NLmanifest = webClient.DownloadString(NLManifestURL);
-                LauncherManifest NLManifest = JsonConvert.DeserializeObject<LauncherManifest>(NLmanifest);
-                curFile = curFile - NLManifest.Files.Count;
-
-                foreach (KeyValuePair<string, string> kv in NLManifest.Files)
-                {
-                    bool ShouldDownload = false;
-                    string gameFilePath = gameInstallDir + kv.Key.Replace("/", Path.DirectorySeparatorChar.ToString());
-                    if (File.Exists(gameFilePath))
-                    {
-                        int progress = (int)(((float)curFile / (float)totalFiles) * 100);
-                        backgroundWorker.ReportProgress(progress, "(" + (curFile) + " / " + totalFiles + ") Checking " + kv.Key);
-                        //Check its md5 hash
-                        using (var stream = File.OpenRead(gameFilePath))
-                        {
-                            var hash = Util.ComputeMD5(gameFilePath);
-
-                            if (hash != kv.Value)
-                            {
-                                UpdateLog.WriteLine(Util.GetShortTimeString() + gameFilePath + " needs to be updated");
-                                ShouldDownload = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        UpdateLog.WriteLine(Util.GetShortTimeString() + gameFilePath + " not existing, needs downloading");
-                        ShouldDownload = true;
-                    }
-
-                    if (ShouldDownload)
-                    {
-                        DownloadFile(curFile, totalFiles, kv, NLManifest, gameFilePath, Properties.Settings.Default.NineLegendUrl, webClient);
-
-                        var hash = Util.ComputeMD5(gameFilePath);
-
-                        if (hash != kv.Value)
-                        {
-                            //MessageBox.Show("Failed Validating " + kv.Key + " : Redownloading"); //problem with double validation, is it too soon in the chain of event ?
-                            UpdateLog.WriteLine(Util.GetShortTimeString() + "failed to verify newly downloaded file, redownloading");
-                            DownloadFile(curFile, totalFiles, kv, NLManifest, gameFilePath, Properties.Settings.Default.NineLegendUrl, webClient);
-                        }
-                        UpdateLog.WriteLine(Util.GetShortTimeString() + "Download complete for NineLegend file: " + kv.Key + " with new hash :" + hash + " for manifest hash : " + kv.Value);
-                    }
-                    if (backgroundWorker.CancellationPending)
-                    {
-                        UpdateLog.WriteLine(Util.GetShortTimeString() + "Update cancelled");
-                        return;
-                    }
-
-                    curFile++;
-                }
-            }*/
                 
             backgroundWorker.ReportProgress(100, "Writing Local Manifest");
 

@@ -40,7 +40,7 @@ namespace NaturalLauncher
 
         public static string VersionFileName = "app.version";
         public static string ManifestName = "Manifest.txt";
-        public static string NLManifestName = "NLManifest.txt";
+        public static string XPManifestName = "XPManifest.txt";
         public static string configName = "Launcher.xml";
 
         public static bool keepLauncherAlive = true;
@@ -48,6 +48,7 @@ namespace NaturalLauncher
 
         public static DateTime LAUNCHTIME = System.DateTime.UtcNow;
         public static string discordCustomStatus = "Currently In The Launcher";
+        internal static bool isExperimental = false;
 
         public static void PlayGame()
         {
@@ -168,12 +169,13 @@ namespace NaturalLauncher
             if (File.Exists(curDir + Path.DirectorySeparatorChar + configName))
             {
                 string IndicatedFolder = "";
-                bool IsNLPack = false;
-                XmlBuilder.ReadConfigXml(out IndicatedFolder, out IsNLPack, out string discordStatus, out bool keepAlive);
+                bool isXP = false;
+                XmlBuilder.ReadConfigXml(out IndicatedFolder, out isXP, out string discordStatus, out bool keepAlive);
 
                 if (IndicatedFolder.Length >0)
                 {
                     HLFolder = IndicatedFolder;
+                    isExperimental = isXP;
                     discordCustomStatus = discordStatus;
                     keepLauncherAlive = keepAlive;
                 }

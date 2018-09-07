@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NaturalLauncher"
         mc:Ignorable="d"
-        Title="Settings" Height="350" Width="587" Background="#FF0D0D0C" MinWidth="568" MinHeight="280" MaxWidth="587" MaxHeight="350">
+        Title="Settings" Height="375.49" Width="587" Background="#FF0D0D0C" MinWidth="568" MinHeight="280" MaxWidth="587" MaxHeight="375">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="95*"/>
@@ -34,10 +34,11 @@
             <RadioButton x:Name="NLRadioButton" Content="Nine Legend" Canvas.Left="417" Canvas.Top="45" Foreground="#FFFFA55A" Checked="NLRadioButton_Checked"/>
             <Label Content="Add files to ignore list :" Canvas.Left="39" Canvas.Top="172" Height="27" Width="145" Foreground="#FF5ACAFF" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <Button x:Name="BrowseHLFolderButton_Copy" Content="Add file(s)" Canvas.Left="252" Canvas.Top="169" Width="221" Height="33" Click="AddToIgnoreButton_Click"/>
-            <CheckBox x:Name="KeepAliveChecker" Content="Keep Launcher alive when playing (and discord status)" Canvas.Left="108" Canvas.Top="266" FontWeight="Bold" Foreground="#FF5ACAFF" Width="343" HorizontalContentAlignment="Center" Click="StopAfterLaunch_Click"/>
+            <CheckBox x:Name="KeepAliveChecker" Content="Keep Launcher alive when playing (and discord status)" Canvas.Left="112" Canvas.Top="294" FontWeight="Bold" Foreground="#FF5ACAFF" Width="343" HorizontalContentAlignment="Center" Click="StopAfterLaunch_Click"/>
             <Label Content="Custom discord status :" Canvas.Left="38" Canvas.Top="128" Height="27" Width="145" Foreground="#FF5ACAFF" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="DiscordTxtbox" Height="27" Canvas.Left="212" TextWrapping="Wrap" Text="status" Canvas.Top="127" Width="261" Foreground="#FF2B2F30" FontWeight="Bold" Background="#BFFFFFFF" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Button x:Name="ChangeDiscordButton" Content="Change" Canvas.Left="479" Canvas.Top="127" Width="49" Height="27"  Background="#19000000" BorderBrush="#FF5ACAFF" Foreground="#FF5ACAFF" Click="ChangeDiscord_Click"/>
+            <CheckBox x:Name="isExperimental" Content="Use Experimental Build" Canvas.Left="196" Canvas.Top="265" FontWeight="Bold" Foreground="#FFFF685A" Width="175" HorizontalContentAlignment="Center" Click="isExperimental_Click"/>
         </Canvas>
     </Grid>
 </Window>
