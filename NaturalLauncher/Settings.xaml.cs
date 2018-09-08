@@ -265,6 +265,10 @@ namespace NaturalLauncher
             Launcher.isExperimental = isExperimental.IsChecked.Value;
 
             XmlBuilder.CreateConfigXml();
+
+            MainWindowReference.CallUpdateGame();
+            MainWindowReference.SettingButton.IsEnabled = false;
+            this.Hide();
         }
 
 

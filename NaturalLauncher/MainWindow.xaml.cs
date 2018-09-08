@@ -102,7 +102,15 @@ namespace NaturalLauncher
                 // CHECK THE HL AND NS INSTALL DIR AND WRITE IT IN THE LAUNCHER XML
                 Launcher.CheckInstallDirectory();
 
-                //Util.ChangeAValueInCfg("net_graph", "2"); //this is not useful but might be someday, that's why I still let it live
+                // set the experimental label
+                if (Launcher.isExperimental)
+                {
+                    Experimental_label.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    Experimental_label.Visibility = Visibility.Hidden;
+                }
 
                 // WE SET DISCORD PRESENCE
                 string ApplicationID = "474144509048127503";
@@ -431,6 +439,14 @@ namespace NaturalLauncher
                 TaskbarItemInfo.ProgressState = System.Windows.Shell.TaskbarItemProgressState.Normal;
                 Util.CreateLocalVersionFile(Launcher.curDir, Launcher.VersionFileName, remoteVersionNumber); //update the version with the new one
 
+                if(Launcher.isExperimental)
+                {
+                    Experimental_label.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    Experimental_label.Visibility = Visibility.Hidden;
+                }
                 Check_Version(); // we should have a changed app.version file to check
             }
 

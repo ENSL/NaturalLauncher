@@ -72,5 +72,6 @@
                 </ContextMenu>
             </Label.ContextMenu>
         </Label>
+        <Label x:Name="Experimental_label" Content="Experimental" Margin="382,10,0,0" VerticalAlignment="Top" FontStyle="Italic" Background="#00000000" Foreground="#FFFF5A5A" Height="38" Grid.Column="1" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="104" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
