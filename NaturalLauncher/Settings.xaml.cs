@@ -44,8 +44,21 @@ namespace NaturalLauncher
             ParamNameTxtbox.SpellCheck.CustomDictionaries.Add(new Uri("pack://application:,,,/Ressources/Commande.lex")); //add the command custom dictonary
 
             //RefreshNLInstallButtonState(); //nl pack based
+            string HUDStyleparam = "0";
 
-            Util.GetAValueInCfg("hud_style",out string HUDStyleparam);
+            try
+            {
+                Util.GetAValueInCfg("hud_style", out HUDStyleparam);
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Could not read config.cfg, please verify the file exists (and ns is installed) !" + Environment.NewLine +
+                    "The launcher will continue running but settings are not usable !", "Couldnt read", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow.sw = null;
+                MainWindowReference.SettingButton.IsEnabled = false;
+                this.Hide();
+            }
+            
             switch(HUDStyleparam)
             {
                 case "0":

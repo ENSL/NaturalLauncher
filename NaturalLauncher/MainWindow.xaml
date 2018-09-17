@@ -36,7 +36,7 @@
             <ColumnDefinition Width="268*"/>
             <ColumnDefinition Width="47*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="TitleLabel" Content="Natural Selection Launcher" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Britannic Bold" FontWeight="Bold" Height="32" Width="336" Foreground="#FFEEC160" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <Label x:Name="TitleLabel" Content="Natural Selection Launcher" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Britannic Bold" FontWeight="Bold" Height="32" Width="328" Foreground="#FFEEC160" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -47,7 +47,7 @@
             </Label.RenderTransform>
         </Label>
         <Rectangle Fill="#A50D0D0C" Margin="0,0,10,32" Stroke="Black" Grid.ColumnSpan="3" Height="46" VerticalAlignment="Bottom" Grid.Column="1"/>
-        <Label x:Name="VersionLabel" Content="checking" Margin="303,10,0,0" VerticalAlignment="Top" FontStyle="Italic" Background="#00000000" Foreground="#FF5ACAFF" Height="38" Grid.Column="1" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="74" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="VersionLabel" Content="checking" Margin="329,9,0,0" VerticalAlignment="Top" FontStyle="Italic" Background="#00000000" Foreground="#FF5ACAFF" Height="38" Grid.Column="1" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="74" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <WebBrowser x:Name="MainWebBrowser" Margin="0,47,10,83"  UseLayoutRounding="False" RenderTransformOrigin="0.498,0.492" Grid.ColumnSpan="3" Grid.Column="1"/>
         <Button x:Name="StartButton" Content="Start" Margin="0,0,10,32" FontWeight="Bold" FontSize="24" Background="#A5151513" Padding="1,1,1,3" Height="46" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="296" Click="Start_Click" Grid.Column="2" BorderBrush="#FF5A71FF" Foreground="#FF2149D3" BorderThickness="2,1" Grid.ColumnSpan="2"/>
         <Button x:Name="WebsiteButton" Content="Join Gather" HorizontalAlignment="Left" Margin="0,0,0,32" Width="218" FontSize="18" Background="#A5151513" Padding="1,1,1,3" Height="46" VerticalAlignment="Bottom" Click="Website_Click" BorderBrush="#FFCD6E52" Grid.Column="1" Foreground="#FF2EB2F0" FontWeight="Bold"/>
@@ -64,14 +64,14 @@
                 <ImageBrush ImageSource="Ressources/pauseimage.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Image Grid.Column="2" Margin="9,24,0,0" Source="Ressources/steam_icon.png" Stretch="Fill" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25"/>
-        <Label x:Name="ServInfoLabel" Content="Public Server :" Grid.Column="2" HorizontalAlignment="Left" Margin="34,20,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe WP Black" Width="224">
+        <Image Grid.Column="2" Margin="9,20,0,0" Source="Ressources/steam_icon.png" Stretch="Fill" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="31"/>
+        <Label x:Name="ServInfoLabel" Content="Public Server :" Grid.Column="2" HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe WP Black" Width="224">
             <Label.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Join the server" Click="JoinPublicServer"/>
                 </ContextMenu>
             </Label.ContextMenu>
         </Label>
-        <Label x:Name="Experimental_label" Content="Experimental" Margin="382,10,0,0" VerticalAlignment="Top" FontStyle="Italic" Background="#00000000" Foreground="#FFFF5A5A" Height="38" Grid.Column="1" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="104" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="Experimental_label" Content="Experimental" Margin="403,9,0,0" VerticalAlignment="Top" FontStyle="Italic" Background="#00000000" Foreground="#FFFF5A5A" Height="38" Grid.Column="1" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="104" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
