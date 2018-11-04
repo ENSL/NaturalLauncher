@@ -64,8 +64,8 @@
                 <ImageBrush ImageSource="Ressources/pauseimage.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Image Grid.Column="2" Margin="9,20,0,0" Source="Ressources/steam_icon.png" Stretch="Fill" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="31"/>
-        <Label x:Name="ServInfoLabel" Content="Public Server :" Grid.Column="2" HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe WP Black" Width="224">
+        <Image Grid.Column="2" Margin="9,20,0,0" Source="Ressources/steam_icon.png" Stretch="Fill" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="31" Visibility="Hidden"/>
+        <Label x:Name="ServInfoLabel" Content="Public Server :" Grid.Column="2" HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe WP Black" Width="224" Visibility="Hidden">
             <Label.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Join the server" Click="JoinPublicServer"/>

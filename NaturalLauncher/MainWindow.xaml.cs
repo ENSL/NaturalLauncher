@@ -89,7 +89,7 @@ namespace NaturalLauncher
 
             if (SelfUpdater.LaucherRemoteVNumber != SelfUpdater.LaucherLocalVNumber && SelfUpdater.isSelfUpdating)
             {
-                this.Hide();
+                Hide();
             }
             else
             {

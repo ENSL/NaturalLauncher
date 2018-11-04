@@ -111,6 +111,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConsoleManager.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LauncherManifest.cs" />
     <Compile Include="ManifestBuilder.cs" />
     <Compile Include="ProjectSettings.cs" />

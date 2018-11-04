@@ -275,16 +275,21 @@ namespace NaturalLauncher
 
         internal static void UpdatePubServ(out int publicPlayers, out int maxPlayers)
         {
+            
             // TO BE CONTINUED but so far we can retrieve pub serv info... 
-            string serverIP = "104.156.251.121"; //public us
-            int port = 27015;
-            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), port);
+            /*
+                string serverIP = "104.156.251.121"; //public us
+                int port = 27015;
+                IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), port);
 
-            var ServInfo = new ServerChecker.A2S_INFO(remoteEP);
+                var ServInfo = new ServerChecker.A2S_INFO(remoteEP);
 
-            publicPlayers = ServInfo.Players; //out
-            maxPlayers = ServInfo.MaxPlayers; //out
-            // Check for the launcher to self update
+                publicPlayers = ServInfo.Players; //out
+                maxPlayers = ServInfo.MaxPlayers; //out
+                                                  // Check for the launcher to self update
+            */ //shit get stuck at trying to connect with the ip.
+                publicPlayers = 0;
+                maxPlayers = 0;
         }
     }
 }
