@@ -590,21 +590,6 @@ namespace NaturalLauncher
                 
             backgroundWorker.ReportProgress(100, "Writing Local Manifest");
 
-            // if we keept the custom files, it's better to use them (thus the hud_style 0)
-            if(Launcher.keepCustomFiles)
-            {
-                try
-                {
-                    Util.ChangeAValueInCfg("hud_style ", "0"); // change 
-                }
-                catch
-                {
-                    //MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Could not write config file to change hud_style 0");
-                    UpdateLog.WriteLine(Util.GetShortTimeString() + "Failed changing the hud_style value");
-                }
-            }
-
-
             /* string manifestDirectory = Launcher.curDir + Path.DirectorySeparatorChar + Launcher.ManifestName;
 
             File.WriteAllText(manifestDirectory, manifest); // replace all with function in util */

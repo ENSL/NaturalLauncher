@@ -688,6 +688,20 @@ namespace NaturalLauncher
             }
 
             XmlBuilder.CreateConfigXml();
+
+            // if we keept the custom files, it's better to use them (thus the hud_style 0)
+            if (Launcher.keepCustomFiles)
+            {
+                try
+                {
+                    Util.ChangeAValueInCfg("hud_style ", "0"); // change 
+                }
+                catch
+                {
+                    MessageBoxResult AlertBox = System.Windows.MessageBox.Show("Could not write config file to change hud_style 0" + Environment.NewLine +
+                        "please note that you might need to change it manually to use your custom files");
+                }
+            }
         }
 
     }
