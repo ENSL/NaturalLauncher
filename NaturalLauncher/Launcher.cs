@@ -45,6 +45,7 @@ namespace NaturalLauncher
 
         public static bool keepLauncherAlive = true;
         public static bool restartSteam = false; // used at the end of the verify process
+        public static bool keepCustomFiles = false; // keep files customized by the player when existing (sound, sprites ...)
 
         public static DateTime LAUNCHTIME = System.DateTime.UtcNow;
         public static string discordCustomStatus = "Currently In The Launcher";
@@ -170,7 +171,7 @@ namespace NaturalLauncher
             {
                 string IndicatedFolder = "";
                 bool isXP = false;
-                XmlBuilder.ReadConfigXml(out IndicatedFolder, out isXP, out string discordStatus, out bool keepAlive);
+                XmlBuilder.ReadConfigXml(out IndicatedFolder, out isXP, out string discordStatus, out bool keepAlive, out bool keepcustoms);
 
                 if (IndicatedFolder.Length >0)
                 {
@@ -178,6 +179,7 @@ namespace NaturalLauncher
                     isExperimental = isXP;
                     discordCustomStatus = discordStatus;
                     keepLauncherAlive = keepAlive;
+                    keepCustomFiles = keepcustoms;
                 }
                 else
                     NeedDirectory = true;
@@ -215,6 +217,9 @@ namespace NaturalLauncher
                 {
                     Environment.Exit(0); //stop the process
                 }
+
+                // Because it's first launch, ask if we want to keep custom files
+                Util.AskForCustomFiles();
             }
             
             NSFolder = HLFolder + Path.DirectorySeparatorChar + "ns";
@@ -227,7 +232,7 @@ namespace NaturalLauncher
             if (File.Exists(curDir + Path.DirectorySeparatorChar + configName))
             {
                 string IndicatedFolder = "";
-                XmlBuilder.ReadConfigXml(out IndicatedFolder, out Result, out string plop, out bool noob);
+                XmlBuilder.ReadConfigXml(out IndicatedFolder, out Result, out string plop, out bool noob,out bool lolilol);
             }
             else
             {

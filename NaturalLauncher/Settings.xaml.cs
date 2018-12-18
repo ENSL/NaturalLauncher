@@ -74,11 +74,12 @@ namespace NaturalLauncher
 
             try
             {
-                XmlBuilder.ReadConfigXml(out string uno, out bool isXP, out string discordStatus, out bool keepAlive);
+                XmlBuilder.ReadConfigXml(out string uno, out bool isXP, out string discordStatus, out bool keepAlive, out bool keepCustoms);
                 Launcher.keepLauncherAlive = keepAlive;
                 DiscordTxtbox.Text = discordStatus;
                 KeepAliveChecker.IsChecked = keepAlive;
                 isExperimental.IsChecked = isXP;
+                isKeepingCustoms.IsChecked = keepCustoms;
                 windowfullyopen = true;
             }
             catch(Exception exception)
@@ -289,6 +290,13 @@ namespace NaturalLauncher
         {
             Launcher.discordCustomStatus = DiscordTxtbox.Text;
             Launcher.UpdateDiscord(false);
+            XmlBuilder.CreateConfigXml();
+        }
+
+        private void KeepCustom_Click(object sender, RoutedEventArgs e)
+        {
+            Launcher.keepCustomFiles = isKeepingCustoms.IsChecked.Value;
+
             XmlBuilder.CreateConfigXml();
         }
     }

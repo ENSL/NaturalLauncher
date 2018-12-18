@@ -548,6 +548,11 @@ namespace NaturalLauncher
                     UpdateLog.WriteLine(Util.GetShortTimeString() + gameFilePath + " not existing, needs downloading");
                     ShouldDownload = true;
                 }
+                if (File.Exists(gameFilePath) && Launcher.keepCustomFiles && ( kv.Key.EndsWith(".wav") || kv.Key.EndsWith(".mp3") || kv.Key.EndsWith(".spr") || kv.Key.EndsWith(".tga") ) )
+                {
+                    UpdateLog.WriteLine(Util.GetShortTimeString() + gameFilePath + " Keeping custom files");
+                    ShouldDownload = false;
+                }
                 if (File.Exists(gameFilePath) && IgnoreManifest.Files.ContainsKey(kv.Key) && IgnoreValue == "1") // ignore everything
                 {
                     UpdateLog.WriteLine(Util.GetShortTimeString() + gameFilePath + " Is Ignored for update, not checking");

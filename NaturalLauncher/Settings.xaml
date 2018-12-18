@@ -38,7 +38,8 @@
             <Label Content="Custom discord status :" Canvas.Left="38" Canvas.Top="128" Height="27" Width="145" Foreground="#FF5ACAFF" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="DiscordTxtbox" Height="27" Canvas.Left="212" TextWrapping="Wrap" Text="status" Canvas.Top="127" Width="261" Foreground="#FF2B2F30" FontWeight="Bold" Background="#BFFFFFFF" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Button x:Name="ChangeDiscordButton" Content="Change" Canvas.Left="479" Canvas.Top="127" Width="49" Height="27"  Background="#19000000" BorderBrush="#FF5ACAFF" Foreground="#FF5ACAFF" Click="ChangeDiscord_Click"/>
-            <CheckBox x:Name="isExperimental" Content="Use Experimental Build" Canvas.Left="196" Canvas.Top="265" FontWeight="Bold" Foreground="#FFFF685A" Width="175" HorizontalContentAlignment="Center" Click="isExperimental_Click"/>
+            <CheckBox x:Name="isExperimental" Content="Use Experimental Build" Canvas.Left="306" Canvas.Top="265" FontWeight="Bold" Foreground="#FFFF685A" Width="175" HorizontalContentAlignment="Center" Click="isExperimental_Click"/>
+            <CheckBox x:Name="isKeepingCustoms" Content="Keep Custom Files" Canvas.Left="102" Canvas.Top="265" FontWeight="Bold" Foreground="#FFFF965A" Width="175" HorizontalContentAlignment="Center" Click="KeepCustom_Click"/>
         </Canvas>
     </Grid>
 </Window>

@@ -665,5 +665,30 @@ namespace NaturalLauncher
 
 
         }
+
+        public static void AskForCustomFiles()
+        {
+            string sMessageBoxText = "Do you want to preserve your custom files?" + Environment.NewLine + "(can be changed in the settings)";
+            string sCaption = "Keep Custom Files";
+
+            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+            MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+            MessageBoxResult rsltMessageBox = System.Windows.MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+            switch (rsltMessageBox)
+            {
+                case MessageBoxResult.Yes:
+                    Launcher.keepCustomFiles = true;
+                    break;
+
+                case MessageBoxResult.No:
+                    Launcher.keepCustomFiles = false;
+                    break;
+            }
+
+            XmlBuilder.CreateConfigXml();
+        }
+
     }
 }

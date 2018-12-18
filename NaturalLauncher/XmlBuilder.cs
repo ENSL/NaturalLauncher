@@ -81,7 +81,7 @@ namespace NaturalLauncher
             return xmlInfo;
         }
 
-        public static bool ReadConfigXml(out string HLFolder, out bool isXP, out string customDiscordStatus, out bool keepLauncherAlive)
+        public static bool ReadConfigXml(out string HLFolder, out bool isXP, out string customDiscordStatus, out bool keepLauncherAlive, out bool keepCustomFiles)
         {
             XmlDocument doc = new XmlDocument();
             try
@@ -125,6 +125,14 @@ namespace NaturalLauncher
             {
                 keepLauncherAlive = true;
             }
+            try
+            {
+                keepCustomFiles = doc.SelectSingleNode("//keepCustomFiles").InnerText == "True";
+            }
+            catch
+            {
+                keepCustomFiles = false;
+            }
 
             return true;
 
@@ -137,6 +145,7 @@ namespace NaturalLauncher
             xmlInfo.Add(new XElement("isXP", Launcher.isExperimental.ToString()));
             xmlInfo.Add(new XElement("DiscordStatus", Launcher.discordCustomStatus));
             xmlInfo.Add(new XElement("keeplauncherAlive", Launcher.keepLauncherAlive.ToString()));
+            xmlInfo.Add(new XElement("keepCustomFiles", Launcher.keepCustomFiles.ToString()));
 
             var doc = new XDocument(new XDeclaration("1.0", "UTF-8", "yes"), xmlInfo);
 
