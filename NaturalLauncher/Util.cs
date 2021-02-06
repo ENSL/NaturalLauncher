@@ -275,28 +275,35 @@ namespace NaturalLauncher
 
         public static int ReadGathererCount()
         {
-            var url = Properties.Settings.Default.GatherURL;
-            var web = new HtmlWeb();
-            var doc = web.Load(url);
-            string htmlstring = doc.Text;
             int Count = 0;
-            // need to retrieve this : <ul id="gatherers"> 
-            var nodal = doc.DocumentNode.Descendants("ul");
 
-            for(int i = 0; i < nodal.Count(); i++)
+            try
             {
-                try
+                var url = Properties.Settings.Default.GatherURL;
+                var web = new HtmlWeb();
+                var doc = web.Load(url);
+                string htmlstring = doc.Text;
+                // need to retrieve this : <ul id="gatherers"> 
+                var nodal = doc.DocumentNode.Descendants("ul");
+
+                for (int i = 0; i < nodal.Count(); i++)
                 {
-                    if (nodal.ElementAt(i).Id == "gatherers")
+                    try
                     {
-                        Count = nodal.ElementAt(i).SelectNodes("li").Count(); //and count the <li> inside
+                        if (nodal.ElementAt(i).Id == "gatherers")
+                        {
+                            Count = nodal.ElementAt(i).SelectNodes("li").Count(); //and count the <li> inside
+                        }
+                    }
+                    catch
+                    {
+                        Count = 0;
                     }
                 }
-                catch
-                {
-                    Count = 0;
-                }
-                    
+            }
+            catch
+            {
+                Count = 0;
             }
 
             return Count;

@@ -15,7 +15,7 @@
       <Value Profile="(Default)">http://ensl.gk-servers.de/ns</Value>
     </Setting>
     <Setting Name="GatherURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.ensl.org/gathers/latest/ns1</Value>
+      <Value Profile="(Default)">http://www.ensl.org/gathers/latest/ns1</Value>
     </Setting>
     <Setting Name="NsXpURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://ensl.gk-servers.de/ns_xp</Value>
